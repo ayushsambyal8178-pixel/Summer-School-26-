@@ -1,210 +1,279 @@
-# 🚗 Arduino-Based Smart Vehicle Safety & Monitoring System
+# 🏠 Arduino-Based Smart Home Safety & Security System
 
-An **Arduino Uno** project that integrates multiple sensors and actuators to create a **Smart Vehicle Safety & Monitoring System**. The system monitors temperature, ambient light, fuel level, detects motion, and provides a servo-based door locking mechanism with visual and audio alerts.
+A Smart Home Safety & Security System built using an **Arduino Uno** that monitors the home environment and improves safety through temperature monitoring, gas leak detection, motion detection, automatic lighting, and a servo-controlled smart door lock.
 
 ---
 
-## 📌 Features
+## 📖 Overview
 
-- 🌡️ **Temperature Monitoring**
-  - Blue LED → Cold (<25°C)
-  - Green LED → Normal/Warm (25°C–35°C)
+This project integrates multiple sensors and actuators to create a low-cost home automation and security solution. It continuously monitors environmental conditions and provides visual and audible alerts when abnormal situations are detected.
+
+---
+
+## ✨ Features
+
+- 🌡️ **Room Temperature Monitoring**
+  - Blue LED → Cool Temperature (<25°C)
+  - Green LED → Normal Temperature (25–35°C)
   - Yellow LED → High Temperature (>35°C)
 
-- 💡 **Automatic Headlight**
-  - Uses an LDR sensor to detect darkness.
-  - Turns on the headlight indicator LED automatically.
+- 🔥 **Gas/Smoke Leak Detection**
+  - Detects gas or smoke using an analog gas sensor.
+  - Red LED and buzzer activate during a gas leak.
 
-- ⛽ **Fuel Level Monitoring**
-  - Detects low fuel level.
-  - Red LED indicates low fuel.
+- 🚨 **Intruder Detection**
+  - PIR motion sensor detects movement.
+  - Buzzer sounds when an intruder is detected.
 
-- 🚨 **Motion Detection**
-  - PIR/IR motion sensor detects movement.
-  - Activates buzzer alarm.
+- 💡 **Automatic Room Lighting**
+  - LDR automatically turns on the room light when it becomes dark.
 
-- 🔐 **Door Lock System**
-  - Push button to Lock
-  - Push button to Unlock
-  - Servo motor controls the door lock mechanism.
+- 🔐 **Smart Door Lock**
+  - Lock and unlock the door using push buttons.
+  - Servo motor controls the locking mechanism.
 
-- 📊 **Serial Monitoring**
-  - Displays:
-    - Temperature
-    - Fuel Level
-    - Light Intensity
-    - Door Lock Status
+- 📟 **Serial Monitoring**
+  - Displays temperature, gas level, light intensity, and motion status in the Arduino Serial Monitor.
 
 ---
 
-## 🛠️ Components Used
+## 🛠 Hardware Components
 
 | Component | Quantity |
 |-----------|----------|
 | Arduino Uno | 1 |
 | Servo Motor (SG90) | 1 |
 | Temperature Sensor (TMP36/LM35) | 1 |
-| LDR (Light Sensor) | 1 |
-| Fuel Sensor/Potentiometer | 1 |
-| PIR/IR Motion Sensor | 1 |
+| Gas/Smoke Sensor (MQ Series or Potentiometer for Simulation) | 1 |
+| LDR (Light Dependent Resistor) | 1 |
+| PIR Motion Sensor | 1 |
 | Push Buttons | 2 |
-| LEDs (Blue, Green, Yellow, Orange, Red) | 5 |
-| Buzzer | 1 |
-| Resistors (220Ω) | 5 |
+| LEDs (Blue, Green, Yellow, White/Orange, Red) | 5 |
+| Piezo Buzzer | 1 |
+| 220Ω Resistors | 5 |
 | Breadboard | 1 |
-| Jumper Wires | Several |
+| Jumper Wires | As Required |
 
 ---
 
-## 🔌 Pin Configuration
+## 🔌 Pin Connections
 
 | Arduino Pin | Component |
 |-------------|-----------|
 | A0 | Temperature Sensor |
-| A1 | Fuel Sensor |
+| A1 | Gas/Smoke Sensor |
 | A2 | LDR |
-| D2 | PIR/IR Motion Sensor |
+| D2 | PIR Motion Sensor |
 | D3 | Lock Button |
 | D4 | Unlock Button |
 | D5 | Blue LED |
 | D6 | Green LED |
 | D7 | Yellow LED |
-| D8 | Headlight LED |
+| D8 | Automatic Room Light LED |
 | D9 | Servo Motor |
-| D10 | Fuel Warning LED |
+| D10 | Gas Alert LED |
 | D11 | Buzzer |
 
 ---
 
-## ⚙️ Working Principle
+## ⚙️ System Operation
 
-### Temperature Monitoring
-The temperature sensor continuously measures the ambient temperature.
+### 🌡 Temperature Monitoring
 
-- **< 25°C** → Blue LED ON
-- **25°C – 35°C** → Green LED ON
-- **> 35°C** → Yellow LED ON
+The system continuously reads the temperature sensor.
 
----
-
-### Automatic Headlight
-
-The LDR measures ambient light.
-
-- Low light → Headlight LED ON
-- Bright light → Headlight LED OFF
+| Temperature | Indicator |
+|-------------|-----------|
+| Below 25°C | Blue LED |
+| 25°C – 35°C | Green LED |
+| Above 35°C | Yellow LED |
 
 ---
 
-### Fuel Monitoring
+### 💡 Automatic Room Light
 
-The fuel sensor continuously checks the fuel level.
+The LDR measures ambient light intensity.
 
-- Fuel value below threshold → Red LED ON
-- Fuel level normal → Red LED OFF
-
----
-
-### Motion Detection
-
-The PIR/IR sensor detects nearby movement.
-
-- Motion detected → Buzzer ON
-- No motion → Buzzer OFF
+- Dark Environment → Room Light ON
+- Bright Environment → Room Light OFF
 
 ---
 
-### Door Lock System
+### 🔥 Gas Leak Detection
+
+The gas sensor monitors harmful gas or smoke.
+
+- Gas level above threshold
+  - Red LED ON
+  - Buzzer ON
+
+- Gas level normal
+  - Red LED OFF
+  - Buzzer OFF
+
+---
+
+### 🚨 Motion Detection
+
+The PIR sensor detects human movement.
+
+When motion is detected:
+
+- Buzzer sounds
+- "Intruder Detected!" is displayed on the Serial Monitor
+
+---
+
+### 🔐 Smart Door Lock
 
 Two push buttons control the servo motor.
 
-- Lock Button → Servo rotates to **0°**
-- Unlock Button → Servo rotates to **90°**
+| Button | Action |
+|--------|--------|
+| Lock | Servo rotates to 0° |
+| Unlock | Servo rotates to 90° |
 
-The status is displayed on the Serial Monitor.
+Door status is also printed on the Serial Monitor.
 
 ---
 
-## 📟 Serial Monitor Output
+## 📊 Serial Monitor Output
 
-```
-Temp: 27.30 Fuel: 420 Light: 635
+Example:
+
+```text
+Temperature: 27.80 C | Gas: 182 | Light: 645 | Motion: Safe
+
+Temperature: 38.10 C | Gas: 425 | Light: 180 | Motion: Detected
+
 Door Locked
 
-Temp: 30.15 Fuel: 280 Light: 215
 Door Unlocked
 ```
 
 ---
 
-## 📷 Project Preview
-
-> Add your circuit image here.
+## 📁 Project Structure
 
 ```
-/images/project.png
+Smart-Home-Safety-System/
+│
+├── SmartHomeSafety.ino
+├── README.md
+├── LICENSE
+├── images/
+│   └── circuit.png
+└── docs/
+    └── report.pdf
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-1. Clone this repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/Smart-Vehicle-Safety-System.git
+git clone https://github.com/yourusername/Smart-Home-Safety-System.git
 ```
 
-2. Open the project in **Arduino IDE**
+### 2. Open Arduino IDE
 
-3. Install the Servo library (already included with Arduino IDE)
+Open:
 
-```cpp
-#include <Servo.h>
+```
+SmartHomeSafety.ino
 ```
 
-4. Upload the sketch to your Arduino Uno.
+### 3. Connect the Hardware
 
-5. Open the Serial Monitor at **9600 baud**.
+Wire the sensors according to the pin configuration table.
+
+### 4. Upload the Code
+
+Select:
+
+- Board: Arduino Uno
+- Port: COM Port
+
+Upload the sketch.
+
+### 5. Open the Serial Monitor
+
+Set the baud rate to:
+
+```
+9600
+```
 
 ---
 
-## 📂 Project Structure
+## 📷 Project Preview
+
+Add your circuit diagram or project photo here.
 
 ```
-Smart-Vehicle-Safety-System/
+images/circuit.png
+```
+
+Example:
+
+```
+Smart-Home-Safety-System
 │
-├── SmartVehicle.ino
-├── README.md
-├── LICENSE
-└── images/
-    └── project.png
+├── images
+│   ├── circuit.png
+│   ├── prototype.jpg
+│   └── demo.gif
 ```
-
----
-
-## 🔮 Future Improvements
-
-- GPS Tracking
-- GSM Alerts
-- Bluetooth Control
-- RFID Authentication
-- Fingerprint Door Lock
-- OLED/LCD Display
-- IoT Dashboard using ESP32
-- Firebase Integration
-- Mobile App Control
 
 ---
 
 ## 🎯 Applications
 
-- Smart Vehicles
-- Vehicle Security
-- Driver Assistance
-- Educational Projects
+- Smart Home Automation
+- Home Intruder Detection
+- Fire & Gas Leak Warning System
+- Elderly Home Monitoring
+- Educational Arduino Projects
 - Embedded Systems Learning
-- IoT Prototype Development
+
+---
+
+## 🔮 Future Improvements
+
+- ESP32 Wi-Fi Integration
+- Mobile App Control
+- Blynk Dashboard
+- Firebase Database
+- GSM SMS Alerts
+- Email Notifications
+- RFID Door Access
+- Fingerprint Authentication
+- LCD/OLED Display
+- Voice Assistant Integration (Google Assistant/Alexa)
+
+---
+
+## 📚 Technologies Used
+
+- Arduino IDE
+- Embedded C/C++
+- Servo Library
+- Arduino Uno
+- Analog & Digital Sensors
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new feature branch
+3. Commit your changes
+4. Push to your branch
+5. Open a Pull Request
 
 ---
 
@@ -216,10 +285,10 @@ GitHub: https://github.com/yourusername
 
 ---
 
-## 📜 License
+## 📄 License
 
 This project is licensed under the **MIT License**.
 
-Feel free to fork, improve, and contribute.
+---
 
-⭐ If you found this project helpful, don't forget to star the repository!
+⭐ **If you found this project helpful, please give it a Star on GitHub!**
