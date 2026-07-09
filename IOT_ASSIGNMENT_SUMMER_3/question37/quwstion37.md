@@ -40,7 +40,7 @@ Hardcoding Wi-Fi usernames and passwords directly into source code is dangerous 
 
 ## Author
 
-**Name:** Rajan Nanda
+**Name:** Ayush Sambyal
 
 **Course:** IoT Summer School 2026
 
