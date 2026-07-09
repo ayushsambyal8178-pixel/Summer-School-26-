@@ -89,7 +89,7 @@ An IoT gateway is a key component of any IoT system. It connects sensor nodes wi
 
 ## Author
 
-**Name:** Rajan Nanda
+**Name:** Ayush Sambyal
 
 **Course:** IoT Summer School 2026
 
