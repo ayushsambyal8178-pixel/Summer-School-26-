@@ -109,4 +109,4 @@ The actual `config.h` file is excluded from version control using `.gitignore` t
 
 ## Author
 
-Rajan Nanda
+Ayush Sambyal
