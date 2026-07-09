@@ -77,4 +77,4 @@ Relay OFF | Temperature: 27.5 °C
 
 
   ## Author
-  Rajan Nanda
+Ayush Sambyal
