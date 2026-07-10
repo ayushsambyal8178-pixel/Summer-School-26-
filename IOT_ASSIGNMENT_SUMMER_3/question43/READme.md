@@ -138,4 +138,4 @@ LOG: FAILED ENTRY
 
 ## Author
 
-**Rajan Nanda**
+**AYUSH SAMBYAL**
