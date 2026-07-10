@@ -128,4 +128,4 @@ Its ability to perform local processing and data logging ensures continuous oper
 
 ## **👨‍💻 Author**
 
-VASU JAMWAL
+Ayush Sambyal
