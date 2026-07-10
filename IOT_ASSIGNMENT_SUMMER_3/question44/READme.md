@@ -140,4 +140,4 @@ Heater:1 Fan:0 Light:1
 
 ## Author
 
-**Rajan Nanda**
+**AYUSH SAMBYAL**
